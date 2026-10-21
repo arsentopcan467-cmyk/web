@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №1</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            color: #222222;
+            background: #eef1f5;
+        }
+
+        #header {
+            font-family: fantasy;
+            font-size: 20px;
+            color: #ffffff;
+            background: #3399ff;
+            text-align: center;
+            padding: 16px;
+        }
+
+        #header > h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        #header > h1::first-letter {
+            color: #ffe066;
+        }
+
+        #header > p {
+            margin: 4px 0;
+        }
+
+        #header > p::before {
+            content: "• ";
+        }
+
+        #content {
+            display: block;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .block {
+            display: block;
+            margin: 16px 0;
+            padding: 16px;
+            background: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 8px;
+        }
+
+        #plane {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .field {
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .field > .label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+        }
+
+        input[type="checkbox"] {
+            margin: 0 1% 0 3%;
+        }
+
+        input[type="text"],
+        select[name="r"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 2% 3%;
+            border: 1px solid #aab4be;
+            border-radius: 5px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #9aa5b1;
+        }
+
+        button {
+            padding: 2% 5%;
+            margin-right: 2%;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            background: #3399ff;
+            cursor: pointer;
+        }
+
+        button[type="button"] {
+            background: #8a96a3;
+        }
+
+        #error {
+            white-space: pre-line;
+            color: #c62828;
+        }
+
+        #error:empty {
+            display: none;
+        }
+
+        #table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #table th,
+        #table td {
+            border: 1px solid #d0d7de;
+            padding: 6px;
+            text-align: left;
+            word-break: break-all;
+        }
+
+        #table > thead th {
+            color: #ffffff;
+            background: #3399ff;
+        }
+
+        td[data-hit="yes"] {
+            color: #2e7d32;
+        }
+
+        td[data-hit="no"] {
+            color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <h1>Топчян Арсен</h1>
+        <p>Группа: Р3208</p>
+        <p>Вариант: 12638</p>
+    </header>
+
+    <main id="content">
+        <section class="block">
+            <canvas id="plane" width="400" height="400"></canvas>
+        </section>
+
+        <section class="block">
+            <form id="form" novalidate>
+                <div class="field">
+                    <span class="label">X:</span>
+                    <label><input type="checkbox" name="x" value="-4">-4</label>
+                    <label><input type="checkbox" name="x" value="-3">-3</label>
+                    <label><input type="checkbox" name="x" value="-2">-2</label>
+                    <label><input type="checkbox" name="x" value="-1">-1</label>
+                    <label><input type="checkbox" name="x" value="0">0</label>
+                    <label><input type="checkbox" name="x" value="1">1</label>
+                    <label><input type="checkbox" name="x" value="2">2</label>
+                    <label><input type="checkbox" name="x" value="3">3</label>
+                    <label><input type="checkbox" name="x" value="4">4</label>
+                </div>
+
+                <div class="field">
+                    <label class="label" for="y">Y:</label>
+                    <input type="text" id="y" name="y" placeholder="число от -3 до 5" autocomplete="off">
+                </div>
+
+                <div class="field">
+                    <label class="label" for="r">R:</label>
+                    <select id="r" name="r">
+                        <option value="">выберите R</option>
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <p id="error"></p>
+
+                <button type="submit">Проверить</button>
+                <button type="button" id="clear">Очистить</button>
+            </form>
+        </section>
+
+        <section class="block">
+            <table id="table">
+                <thead>
+                    <tr>
+                        <th>X</th>
+                        <th>Y</th>
+                        <th>R</th>
+                        <th>Результат</th>
+                        <th>Время проверки</th>
+                    </tr>
+                </thead>
+                <tbody id="results"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
